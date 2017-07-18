@@ -67,8 +67,7 @@ object Main
         // end the loop
         val finalOut = outStr.replaceAll("( )+", " ").trim()
         val finalOut2 = outStr2.replaceAll("( )+", " ").trim()
-        println("\nShort Form: " + finalOut)
-        println("\nLong Form: " + finalOut2 + "\n\n- - - - -\n")
+        println("\nShort Form: " + finalOut + "\nLong Form: " + finalOut2 + "\n\n- - - - -\n")
 
       case false =>
         numLength >= (((z + 1) * 3) + 1) match {
@@ -111,9 +110,11 @@ object Main
 
                   case false =>
                     buildOut(numLoop, numLength, numList, list, theOut, theOut2, (z + 1))
+
                 }
               case false =>
                 buildOut(numLoop, numLength, numList, list, theOut, theOut2, (z + 1))
+
             }
 
           case false =>
@@ -122,8 +123,12 @@ object Main
             val v = (((z - 1) * 3) + 3)
 
             outExtra(numLoop, numLength, numList, list, theOut, theOut2, (z + 1), v)
+
+
         }
+
     }
+
   }
 
   def outExtra(
@@ -146,6 +151,10 @@ object Main
         val theNewOut2 = numList(v).toString() + theOut2
 
         outExtra(numLoop, numLength, numList, list, theNewOut, theNewOut2, z, (v + 1))
+
+      //case _ => outExtra(numLoop, numLength, numList, list, theOut, theOut2, z, v)
     }
+
   }
+
 }
