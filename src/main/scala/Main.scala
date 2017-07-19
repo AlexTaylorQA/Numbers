@@ -3,8 +3,7 @@
   */
 
 import scala.collection.mutable.ListBuffer
-import org.scalautils._
-import TypeCheckedTripleEquals._
+import util._
 
 object Main
 {
@@ -15,17 +14,20 @@ object Main
 
   def startUp(str:String):Unit =
   {
-    try
+    val doTry = Try(startNext(str))
+
+    doTry match
     {
-      println(str)
-      val getNum = scala.io.StdIn.readLong()
-      printNum(getNum)
-      startUp("Please input a number to be converted:   ")
+      case Failure(a) => startUp("\n- - - - -\n\nPlease input a valid whole number.   ")
     }
-    catch
-    {
-      case _ => startUp("\n- - - - -\n\nPlease input a valid whole number.   ")
-    }
+  }
+
+  def startNext(str:String):Unit =
+  {
+    println(str)
+    val getNum = scala.io.StdIn.readLong()
+    printNum(getNum)
+    startUp("Please input a number to be converted:   ")
   }
 
   def printNum(y: Long):Unit =
@@ -120,7 +122,6 @@ object Main
                 buildOut(numLoop, numLength, numList, list, theOut, theOut2, (z + 1))
 
             }
-
           case false =>
             val theOut = " " + outStr
             val theOut2 = " " + outStr2
