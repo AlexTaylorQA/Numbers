@@ -62,7 +62,7 @@ object Main
                 outStr:String,
                 outStr2:String, z:Int): Unit = {
 
-    z == (numLoop + 1) match {
+      numLoop + 1 == z match {
       case true =>
         // end the loop
         val finalOut = outStr.replaceAll("( )+", " ").trim()
