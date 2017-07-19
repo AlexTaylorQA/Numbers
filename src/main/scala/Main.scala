@@ -34,7 +34,7 @@ object Main
   {
     val numLength:Long = y.toString().length.toLong
     val numSet = y.toString.toCharArray
-    val OGnumList = new ListBuffer[Long]()
+    val OGnumList:ListBuffer[Long] = new ListBuffer()
 
     for (w <- 0 to (numLength - 1).toInt)
     {
@@ -63,14 +63,11 @@ object Main
       "sextillion"
     )
 
-    val numLoop = math.floor(numLength / 3).toLong
-
-    buildOut(numLoop, numLength, numList, shortList, longList, "", "", 0)
+    buildOut(numLength, numList, shortList, longList, "", "", 0)
 
   }
 
   def buildOut(
-                numLoop:Long,
                 numLength:Long,
                 numList:ListBuffer[Long],
                 shortList:List[String],
@@ -78,6 +75,7 @@ object Main
                 outStr:String,
                 outStr2:String, z:Int): Unit = {
 
+      val numLoop = math.floor(numLength / 3).toLong
       z match {
       case z if numLoop + 1 == z  =>
         // end the loop
@@ -117,7 +115,6 @@ object Main
                     val newOut = theOut.replace(shortList(z), "")
                     val newOut2 = theOut2.replace(longList(z), "")
                     buildOut(
-                      numLoop,
                       numLength,
                       numList,
                       shortList,
@@ -128,11 +125,11 @@ object Main
                     )
 
                   case false =>
-                    buildOut(numLoop, numLength, numList, shortList, longList, theOut, theOut2, (z + 1))
+                    buildOut(numLength, numList, shortList, longList, theOut, theOut2, (z + 1))
 
                 }
               case false =>
-                buildOut(numLoop, numLength, numList, shortList, longList, theOut, theOut2, (z + 1))
+                buildOut(numLength, numList, shortList, longList, theOut, theOut2, (z + 1))
 
             }
           case false =>
@@ -140,13 +137,12 @@ object Main
             val theOut2 = " " + outStr2
             val v = (((z - 1) * 3) + 3)
 
-            outExtra(numLoop, numLength, numList, shortList, longList, theOut, theOut2, (z + 1), v)
+            outExtra(numLength, numList, shortList, longList, theOut, theOut2, (z + 1), v)
         }
     }
   }
 
   def outExtra(
-                numLoop:Long,
                 numLength:Long,
                 numList:ListBuffer[Long],
                 shortList:List[String],
@@ -159,13 +155,13 @@ object Main
     v  match
     {
       case v if v == numLength =>
-        buildOut(numLoop, numLength, numList, shortList, longList, theOut, theOut2, z)
+        buildOut(numLength, numList, shortList, longList, theOut, theOut2, z)
 
       case _ =>
         val theNewOut = numList(v).toString() + theOut
         val theNewOut2 = numList(v).toString() + theOut2
 
-        outExtra(numLoop, numLength, numList, shortList, longList, theNewOut, theNewOut2, z, (v + 1))
+        outExtra(numLength, numList, shortList, longList, theNewOut, theNewOut2, z, (v + 1))
 
     }
 
