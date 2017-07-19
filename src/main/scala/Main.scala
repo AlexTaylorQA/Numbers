@@ -3,6 +3,8 @@
   */
 
 import scala.collection.mutable.ListBuffer
+import org.scalautils._
+import TypeCheckedTripleEquals._
 
 object Main
 {
@@ -62,14 +64,14 @@ object Main
                 outStr:String,
                 outStr2:String, z:Int): Unit = {
 
-      numLoop + 1 == z match {
-      case true =>
+      z match {
+      case z if numLoop + 1 == z  =>
         // end the loop
         val finalOut = outStr.replaceAll("( )+", " ").trim()
         val finalOut2 = outStr2.replaceAll("( )+", " ").trim()
         println("\nShort Form: " + finalOut + "\nLong Form: " + finalOut2 + "\n\n- - - - -\n")
 
-      case false =>
+      case _ =>
         numLength >= (((z + 1) * 3) + 1) match {
           case true =>
 
@@ -139,12 +141,12 @@ object Main
                 z:Int,
                 v:Int):Unit =
   {
-    v == numLength  match
+    v  match
     {
-      case true =>
+      case v if v == numLength =>
         buildOut(numLoop, numLength, numList, list, theOut, theOut2, z)
 
-      case false =>
+      case _ =>
         val theNewOut = numList(v).toString() + theOut
         val theNewOut2 = numList(v).toString() + theOut2
 
