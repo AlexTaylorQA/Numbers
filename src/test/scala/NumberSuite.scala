@@ -1,5 +1,5 @@
 import org.scalatest.FunSuite
-
+import util._
 /**
   * Created by Administrator on 18/07/2017.
   */
@@ -9,7 +9,7 @@ class NumberSuite extends FunSuite
 
   test("Input a valid number.")
   {
-    try(Main.printNum(12345))
+    Try(Main.printNum(12345))
   }
 
   test("Input an invalid, negative number.")
