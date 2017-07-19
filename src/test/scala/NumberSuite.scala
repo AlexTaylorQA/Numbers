@@ -15,13 +15,13 @@ class NumberSuite extends FunSuite
   test("Input an invalid, negative number.")
   {
     val error = intercept[Exception] {Main.printNum(-1)}
-    assert(error.getMessage == "For input string: \"-\"")
+    assert(error.getMessage === "For input string: \"-\"")
   }
 
   test("Input an invalid string instead of a number.")
   {
     val error = intercept[Exception] {Main.printNum("abc".toLong)}
-    assert(error.getMessage == "For input string: \"abc\"")
+    assert(error.getMessage === "For input string: \"abc\"")
   }
 
 }
