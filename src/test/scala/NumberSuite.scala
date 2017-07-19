@@ -12,7 +12,7 @@ class NumberSuite extends FunSuite
 
   test("Input a valid number.")
   {
-    Try(Main.printNum(12345))
+    Main.printNum(12345)
   }
 
   test("Input an invalid, negative number.")
@@ -27,20 +27,15 @@ class NumberSuite extends FunSuite
     assert(error.getMessage === "For input string: \"abc\"")
   }
 
-  test("Input an invalid number.")
-  {
-    Try(Main.printNum(-12345))
-  }
-
   test("Try to input a number with enough digits to trigger part of the buildOut function.")
   {
-    Try(Main.printNum(1234567890))
+    Main.printNum(1234567890)
   }
 
 
   test("Try to input a number with a sequence of zeroes in the scope of \"thousand\", \"million\", etc.")
   {
-    Try(Main.printNum(1000000000.toLong))
+    Main.printNum(1000000000.toLong)
   }
 
   test("Test Main method")
