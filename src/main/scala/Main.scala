@@ -43,18 +43,29 @@ object Main
 
     val numList = OGnumList.reverse
 
-    val list = List(
-      ("thousand", "thousand"),
-      ("million", "million"),
-      ("billion", "milliard"),
-      ("trillion", "billion"),
-      ("quadrillion", "billiard"),
-      ("quintillion", "trillion"),
-      ("sextillion", "trilliard"))
+    val longList = List(
+      "thousand",
+      "million",
+      "milliard",
+      "billion",
+      "billiard",
+      "trillion",
+      "trilliard"
+    )
+
+    val shortList = List(
+      "thousand",
+      "million",
+      "billion",
+      "trillion",
+      "quadrillion",
+      "quintillion",
+      "sextillion"
+    )
 
     val numLoop = math.floor(numLength / 3).toLong
 
-    buildOut(numLoop, numLength, numList, list, "", "", 0)
+    buildOut(numLoop, numLength, numList, shortList, longList, "", "", 0)
 
   }
 
@@ -62,7 +73,8 @@ object Main
                 numLoop:Long,
                 numLength:Long,
                 numList:ListBuffer[Long],
-                list:List[(String, String)],
+                shortList:List[String],
+                longList:List[String],
                 outStr:String,
                 outStr2:String, z:Int): Unit = {
 
@@ -78,7 +90,7 @@ object Main
           case true =>
 
             val theOut =
-              list(z)._1 + " " +
+              shortList(z) + " " +
                 (
                   numList((z * 3) + 2).toString +
                   numList((z * 3) + 1).toString +
@@ -86,7 +98,7 @@ object Main
                 ).replaceFirst("^0*", "") + " " + outStr
 
             val theOut2 =
-              list(z)._2 + " " +
+              longList(z) + " " +
                 (
                   numList((z * 3) + 2).toString +
                   numList((z * 3) + 1).toString +
@@ -102,24 +114,25 @@ object Main
                 ).replaceFirst("^0*", "").isEmpty match
                 {
                   case true =>
-                    val newOut = theOut.replace(list(z)._1, "")
-                    val newOut2 = theOut2.replace(list(z)._2, "")
+                    val newOut = theOut.replace(shortList(z), "")
+                    val newOut2 = theOut2.replace(longList(z), "")
                     buildOut(
                       numLoop,
                       numLength,
                       numList,
-                      list,
+                      shortList,
+                      longList,
                       newOut,
                       newOut2,
                       z + 1
                     )
 
                   case false =>
-                    buildOut(numLoop, numLength, numList, list, theOut, theOut2, (z + 1))
+                    buildOut(numLoop, numLength, numList, shortList, longList, theOut, theOut2, (z + 1))
 
                 }
               case false =>
-                buildOut(numLoop, numLength, numList, list, theOut, theOut2, (z + 1))
+                buildOut(numLoop, numLength, numList, shortList, longList, theOut, theOut2, (z + 1))
 
             }
           case false =>
@@ -127,7 +140,7 @@ object Main
             val theOut2 = " " + outStr2
             val v = (((z - 1) * 3) + 3)
 
-            outExtra(numLoop, numLength, numList, list, theOut, theOut2, (z + 1), v)
+            outExtra(numLoop, numLength, numList, shortList, longList, theOut, theOut2, (z + 1), v)
         }
     }
   }
@@ -136,7 +149,8 @@ object Main
                 numLoop:Long,
                 numLength:Long,
                 numList:ListBuffer[Long],
-                list:List[(String,String)],
+                shortList:List[String],
+                longList:List[String],
                 theOut:String,
                 theOut2:String,
                 z:Int,
@@ -145,13 +159,13 @@ object Main
     v  match
     {
       case v if v == numLength =>
-        buildOut(numLoop, numLength, numList, list, theOut, theOut2, z)
+        buildOut(numLoop, numLength, numList, shortList, longList, theOut, theOut2, z)
 
       case _ =>
         val theNewOut = numList(v).toString() + theOut
         val theNewOut2 = numList(v).toString() + theOut2
 
-        outExtra(numLoop, numLength, numList, list, theNewOut, theNewOut2, z, (v + 1))
+        outExtra(numLoop, numLength, numList, shortList, longList, theNewOut, theNewOut2, z, (v + 1))
 
     }
 
