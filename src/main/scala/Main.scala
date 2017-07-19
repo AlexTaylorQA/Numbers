@@ -125,12 +125,8 @@ object Main
             val v = (((z - 1) * 3) + 3)
 
             outExtra(numLoop, numLength, numList, list, theOut, theOut2, (z + 1), v)
-
-
         }
-
     }
-
   }
 
   def outExtra(
