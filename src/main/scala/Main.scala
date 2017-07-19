@@ -8,7 +8,7 @@ import TypeCheckedTripleEquals._
 
 object Main
 {
-  def main(args:Array[String]) =
+  def main(args:Array[String]):Unit =
   {
     startUp("Please input a number to be converted:   ")
   }
@@ -28,7 +28,7 @@ object Main
     }
   }
 
-  def printNum(y: Long) =
+  def printNum(y: Long):Unit =
   {
     val numLength:Long = y.toString().length.toLong
     val numSet = y.toString.toCharArray
