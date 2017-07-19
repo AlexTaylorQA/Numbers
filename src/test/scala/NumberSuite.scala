@@ -1,5 +1,8 @@
 import org.scalatest.FunSuite
 import util._
+import java.io.StringBufferInputStream
+import scala.Console.setIn
+
 /**
   * Created by Administrator on 18/07/2017.
   */
@@ -37,7 +40,31 @@ class NumberSuite extends FunSuite
 
   test("Try to input a number with a sequence of zeroes in the scope of \"thousand\", \"million\", etc.")
   {
-    Try(Main.printNum(1000000000))
+    Try(Main.printNum(1000000000.toLong))
+  }
+
+  test("Test Main method")
+  {
+    val theMsg = new StringBufferInputStream("1234567890987654321")
+    setIn(theMsg)
+    Main.main(Array())
+
+  }
+
+  test("Test startUp by feeding it a message and some input")
+  {
+    //val theInput = 123456789
+    val theMsg = new StringBufferInputStream("1234567890987654321")
+    setIn(theMsg)
+    Main.startUp("", 0)
+  }
+
+  test("Test startUp by feeding it a message and some invalid input")
+  {
+    //val theInput = 123456789
+    val theMsg = new StringBufferInputStream("abcdef")
+    setIn(theMsg)
+    Main.startUp("", 0)
   }
 
 }

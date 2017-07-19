@@ -9,25 +9,31 @@ object Main
 {
   def main(args:Array[String]):Unit =
   {
-    startUp("Please input a number to be converted:   ")
+    startUp("Please input a number to be converted:   ", 0)
   }
 
-  def startUp(str:String):Unit =
+  def startUp(str:String, count:Int):Unit =
   {
     val doTry = Try(startNext(str))
 
     doTry match
     {
-      case Failure(a) => startUp("\n- - - - -\n\nPlease input a valid whole number.   ")
+      case Success(a) => println("Success!\n")
+      case Failure(a) =>
+        count + 1 match
+        {
+          case x if x >= 3 =>  println("\n- - - - -\n\nToo many invalid attempts.\n")
+          case x => startUp("\n- - - - -\n\nPlease input a valid whole number.   ", x)
+        }
     }
   }
 
   def startNext(str:String):Unit =
   {
     println(str)
-    val getNum = scala.io.StdIn.readLong()
+    val getNum = scala.io.StdIn.readLine().toLong
     printNum(getNum)
-    startUp("Please input a number to be converted:   ")
+    startUp("Please input a number to be converted:   ", 0)
   }
 
   def printNum(y: Long):Unit =
