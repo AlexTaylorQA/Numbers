@@ -98,13 +98,15 @@ object Main
                 ).replaceFirst("^0*", "").isEmpty match
                 {
                   case true =>
+                    val newOut = theOut.replace(list(z)._1, "")
+                    val newOut2 = theOut2.replace(list(z)._2, "")
                     buildOut(
                       numLoop,
                       numLength,
                       numList,
                       list,
-                      theOut.replace(list(z)._1, ""),
-                      theOut2.replace(list(z)._2, ""),
+                      newOut,
+                      newOut2,
                       z + 1
                     )
 
